@@ -38,9 +38,95 @@ Let's be friends :wink:
 
 :black_small_square: *'django':* Get links to download Django tutorials :snake:
 
+:black_small_square: *'paste':* Get links to paste code errors :bug:
+
 """, use_aliases=True)
         	 msg.body(response)
         	 responded = True
+
+        elif incoming_msg == 'quote':
+            # returns a quote
+            r = requests.get('https://api.quotable.io/random')
+
+            if r.status_code == 200:
+                data = r.json()
+                quote = f'{data["content"]} ({data["author"]})'
+
+            else:
+                quote = 'I could not retrieve a quote at this time, sorry.'
+
+            msg.body(quote)
+            responded = True
+
+        elif incoming_msg == 'django':
+            # return a django alert
+            django="""Looking for Django tutorials?Nicky recommends the following:
+*Official documentation and tutorial*
+*Tutorial from MDN*
+*Tutorial from django-girls*
+*Corey Schaffer youtube channel*
+*The net ninja youtube channel*"""
+            msg.body(django)
+            responded = True
+        elif incoming_msg == 'python':
+            # return a django alert
+            python="""Looking for Python tutorials?Nicky recommends the following:
+*Official documentation and tutorial*
+*Tutorial from RealPython*
+*Tutorial from morioh*
+*Corey Schaffer youtube channel*
+*The edit dojo youtube channel*"""
+            msg.body(python)
+            responded = True
+        elif incoming_msg == 'paste':
+            # return a django alert
+            paste="""To share code or error tracebacks please use an online pasting service, here is a list of suggested sites:
+
+- https://del.dog
+- https://dpaste.org
+- https://linkode.org
+- https://hastebin.com
+- https://bin.kv2.dev"""
+            msg.body(paste)
+            responded = True
+        elif incoming_msg == 'meta':
+            # return a django alert
+            meta="""Please don't ask meta questions like:
+
+"Any user of $x here?"
+"Anyone used technology $y?"
+"Hello I need help on $z"
+
+Just ask about your problem directly! With all the devs here the probability that someone will help is pretty high."""
+            msg.body(meta)
+            responded = True
+        elif incoming_msg == 'paste':
+            # return a django alert
+            paste="""To share code or error tracebacks please use an online pasting service, here is a list of suggested sites:
+
+- https://del.dog
+- https://dpaste.org
+- https://linkode.org
+- https://hastebin.com
+- https://bin.kv2.dev"""
+            msg.body(paste)
+            responded = True
+        elif incoming_msg == 'yw':
+            # return a django alert
+            yw="You are welcome"
+            msg.body(yw)
+            responded = True
+        elif incoming_msg == 'mornin':
+            # return a django alert
+            mornin="Good morning coders? How is it going everybody? Let us code!"
+            msg.body(mornin)
+            responded = True
+        elif incoming_msg == 'night':
+            # return a django alert
+            night="Good night coders. It has been an honor."
+            msg.body(night)
+            responded = True
+
             
 
             
