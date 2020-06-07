@@ -40,6 +40,8 @@ Let's be friends :wink:
 
 :black_small_square: *'paste':* Get links to paste code errors :bug:
 
+:black_small_square: *'code':* Get programming quotes :sunglasses:
+
 """, use_aliases=True)
         	 msg.body(response)
         	 responded = True
@@ -126,10 +128,22 @@ Just ask about your problem directly! With all the devs here the probability tha
             night="Good night coders. It has been an honor."
             msg.body(night)
             responded = True
+        elif incoming_msg == 'code':
+            # returns a quote
+            r = requests.get('https://programming-quotes-api.herokuapp.com/quotes/lang/en')
 
-            
+            if r.status_code == 200:
+                data = r.json()
+                code= f'{data["en"]} ({data["author"]})'
 
-            
-            
+            else:
+                code = 'I could not retrieve a quote at this time, sorry.'
+
+            msg.body(code)
+            responded = True
+
+        
+        if not responded:
+             msg.body("Sorry, I guess I did not understand your instruction. Send 'hello' for a list of commands.")   
 
         return HttpResponse(str(resp))
